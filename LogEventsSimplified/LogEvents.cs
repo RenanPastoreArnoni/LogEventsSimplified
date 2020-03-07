@@ -27,5 +27,27 @@ namespace LogEventsSimplified {
                 throw;
             }
         }
+
+        public static void logSimpleStringCustomSource(string LogMessage, EventLogEntryType logEntryType, int EventID, string CSource, string CLog) {
+            try {
+
+                if (!EventLog.SourceExists(CSource)) {
+
+                    EventLog.CreateEventSource(CSource, CLog);
+                }
+
+                using (EventLog log = new EventLog()) {
+
+                    log.Source = MySource;
+                    log.Log = MyLog;
+                    log.WriteEntry(LogMessage, logEntryType, EventID);
+                }
+
+            } catch (Exception) {
+
+                throw;
+            }
+        }
+
     }
 }
