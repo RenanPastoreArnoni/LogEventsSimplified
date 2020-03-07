@@ -3,8 +3,9 @@ using System.Diagnostics;
 
 namespace LogEventsSimplified {
     public static class LogEvents {
-        const string MyLog = "Mylog";
-        const string MySource = "Mysource";
+        
+        const string MyLog = "DefLog";
+        const string MySource = "DefSource";
 
         public static void logSimpleStringEvent(string LogMessage, EventLogEntryType logEntryType, int EventID) {
 
@@ -38,8 +39,8 @@ namespace LogEventsSimplified {
 
                 using (EventLog log = new EventLog()) {
 
-                    log.Source = MySource;
-                    log.Log = MyLog;
+                    log.Source = CSource;
+                    log.Log = CLog;
                     log.WriteEntry(LogMessage, logEntryType, EventID);
                 }
 
